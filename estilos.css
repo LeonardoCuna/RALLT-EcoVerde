@@ -1,0 +1,49 @@
+body{
+    margin:0;
+}
+
+a{
+    text-decoration: none;
+}
+
+header{
+    display:flex;
+    justify-content: space-between;
+    height: 100px;
+    color: whITE;
+    background-color: 121B27;
+    align-items: center;
+    padding: 10px;
+}
+
+header a{
+    color: white;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    height: 80px;
+    margin-right: 10px;
+}
+
+nav a{
+    font-weight: 600;
+    font-size: 20px;
+    padding-right: 14px;
+    transition: .2s;
+}
+
+nav a:hover{
+    font-size: 17px;
+}
+
+@media (max-width:700px){
+    header{
+        flex-direction: column;
+    }
+
+    
+}
