@@ -1,5 +1,8 @@
 <?php
 Class Usuario{
+    private $Usuario; //Para array
+    private $db; //Para conexion
+
 
     private $Cedula;
     private $Nombre;
@@ -13,7 +16,7 @@ Class Usuario{
     private $Barrio;
     private $Tipo;
 
-    public function __construct($Cedula, $Nombre, $Apellido, $Celular, $Email, $Clave, $Calle, $Numero, $Esquina, $Barrio, $Tipo){
+   /*public function __construct($Cedula, $Nombre, $Apellido, $Celular, $Email, $Clave, $Calle, $Numero, $Esquina, $Barrio, $Tipo){
         $this -> Cedula=$Cedula;
         $this -> Nombre=$Nombre;
         $this -> Apellido=$Apellido;
@@ -25,7 +28,22 @@ Class Usuario{
         $this -> Esquina=$Esquina;
         $this -> Barrio=$Barrio;
         $this -> Tipo=$Tipo;
+
+
+       
+    } */
+    
+    public function __construct(){
+			
+        //Asignamos al atributo db el valor del metodo conexion() de la clase Conectar
+        //Conectar es la clase y conexion es el metodo
+        $this->db = Conectar::conexion();
+        //Determinamos que el atributo personas será un array
+        $this->Usuario = array();
+        
     }
+    
+
 
     public function setCedula($Cedula){
         $this -> Cedula=$Cedula;
@@ -87,6 +105,28 @@ Class Usuario{
     public function getTipo(){
         return $this -> Tipo;
     }
+
+
+
+
+    public function RegistrarCliente($Cedula, $Nombre, $Apellido, $Celular, $Email, $Clave, $Calle, $Numero, $Esquina, $Barrio ){
+        $Tipo= "Cliente";
+        $sql = "INSERT INTO usuario VALUES ('$Cedula', NULL, '$Nombre', '$Apellido', '$Celular', '$Email', '$Clave', '$Calle', '$Numero', '$Esquina', '$Barrio', '$Tipo')";
+        
+        
+        if($this->db->query($sql)){
+            return true;
+            
+        }else{
+            return false;
+        }
+    }
+
+
+
+
+
+
 }
 
 
