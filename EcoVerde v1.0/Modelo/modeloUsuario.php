@@ -124,6 +124,8 @@ Class Usuario{
     }
 
 
+    
+
 
 
     public function ComprobarEstado($Mail, $Clave){
@@ -151,6 +153,47 @@ Class Usuario{
           
           }
     }
+
+
+    public function ComprobarCedula($Cedula){
+        $sql="SELECT * FROM usuario WHERE CI='$Cedula'";
+        $consulta = $this->db->query($sql);
+       
+        if( $consulta ){
+
+            
+            if( mysqli_num_rows( $consulta ) > 0){
+          
+              
+              return false;
+          
+          }else{
+            return true;
+          }
+    }
+
+ }
+
+
+ public function ComprobarEmail($Mail){
+    $sql="SELECT * FROM usuario WHERE email='$Mail'";
+    $consulta = $this->db->query($sql);
+   
+    if( $consulta ){
+
+        
+        if( mysqli_num_rows( $consulta ) > 0){
+      
+          
+          return false;
+      
+      }else{
+        return true;
+      }
+}
+
+}
+
 
     public function IniciarSesion($Mail, $Clave){
         $sql="SELECT * FROM usuario WHERE email='$Mail' AND contraseña='$Clave'"; 

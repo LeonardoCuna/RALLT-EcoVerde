@@ -15,6 +15,7 @@ require_once("../Modelo/modeloUsuario.php");
     $Celular = $_POST['celular'];
     $Email = $_POST['email'];
     $Clave = MD5($_POST['password']);
+    $ClaveVal=MD5($_POST['passwordVal']);
     $Calle = $_POST['calle'];
     $Numero = $_POST['numero'];
     $Esquina = $_POST['esquina'];
@@ -24,15 +25,31 @@ require_once("../Modelo/modeloUsuario.php");
      
     
 
-    if($usuario->RegistrarCliente($Cedula, $Nombre, $Apellido, $Celular, $Email, $Clave, $Calle, $Numero, $Esquina, $Barrio) ){
+      if($Clave==$ClaveVal){ 
+        if($usuario->ComprobarEmail($Email)){
+         
+         if($usuario->ComprobarCedula($Cedula)){ 
+             if($usuario->RegistrarCliente($Cedula, $Nombre, $Apellido, $Celular, $Email, $Clave, $Calle, $Numero, $Esquina, $Barrio) ){
 
-        header('location:../Vista/login.html');
-     }else{
-        echo "no se pudo registrar";
-     }
-    
+                   header('location:../Vista/login.php');
+             }else{
+                   echo "no se pudo registrar";
+             }
+
+         }else{
+            header('location:../Vista/registrarse.php?errCed=aparecer');
+            }
+
+         }else{
+            header('location:../Vista/registrarse.php?errMail=aparecer');
+         }
+      }else{
+         header('location:../Vista/registrarse.php?errContra=aparecer');
+      }
     
       }
+
+
 
       
       if(isset($_POST['entrar'])){
@@ -51,12 +68,14 @@ require_once("../Modelo/modeloUsuario.php");
                   header('location:../index.php');
             
             }else{
-               echo "Su cuenta no ha sido aceptada aún por un administrador.";
+               header('location:../Vista/login.php?estado=aparecer');
                
          }
 
           }else{
-            echo "no existe";
+            
+            header('location:../Vista/login.php?error=aparecer');
+
           }
 
       }

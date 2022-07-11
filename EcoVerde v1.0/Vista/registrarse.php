@@ -40,7 +40,7 @@
 
 <body>
     <div class="volver">
-        <a href="login.html"><i class="fa-solid fa-circle-chevron-left"></i></a>
+        <a href="login.php"><i class="fa-solid fa-circle-chevron-left"></i></a>
     </div>
   <div class="ladoform">
     
@@ -61,15 +61,18 @@
             <div class="izquierda-divs">
             <input type="text" name="cedula" placeholder="Cédula de identidad" required>
             </div>
+            <div class="mensajeContra <?php  echo $_GET['errCed'] ?>"> <span class="mensaje-error">Ya te has registrado con esta CI. Inicia Sesión</span> </div>
+            
+           
             <div class="izquierda-divs">
             <input type="email" name="email" placeholder="Email" required>
             </div>
-
+            <div class="mensajeContra <?php  echo $_GET['errMail'] ?>"> <span class="mensaje-error">El correo ya está registrado a una cuenta existente. Inicia sesión</span> </div>
             <div class="izquierda-divs">
                 <input type="password" name="password" minlength="8" id="password" placeholder="Contraseña" required>
             </div>
              
-               
+            <div class="mensajeContra <?php  echo $_GET['errContra'] ?>"> <span class="mensaje-error">Las contraseñas no coinciden</span> </div>
             
                     <div class="izquierda-divs">
                 <input type="password" name="passwordVal" id="passwordVal" required placeholder="Confirmar contraseña">
@@ -126,3 +129,6 @@
 
 
 <script src="js/validarRegistro.js"></script>
+
+
+</html>

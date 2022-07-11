@@ -39,6 +39,15 @@ body{
     border: 1px solid rgb(255, 0, 0);;
 }
 
+.mensajeEstado{
+    display: none;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(192, 79, 79, 0.5);
+    color: rgb(255, 0, 0);
+    border: 1px solid rgb(255, 0, 0);;
+}
+
 .aparecer{
     display:block !important;
 }
@@ -74,7 +83,7 @@ body{
 
 .form-login{
     margin: auto;
-    width: 40%;
+    width: 50%;
     margin-top: 30%;
     border-radius: 10px;
     height: 360px;
