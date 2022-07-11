@@ -15,7 +15,7 @@ numero VARCHAR(30) NOT NULL,
 esquina VARCHAR(30) NOT NULL,
 barrio VARCHAR(30) NOT NULL,
 tipo enum("Cliente", "Administrador", "Gestor", "Reparto") NOT NULL,
-
+estado enum("Pendiente", "Aceptado"),
 FOREIGN KEY(CIadmin) REFERENCES Usuario(CI)
 )ENGINE=INNODB;
 

@@ -111,7 +111,8 @@ Class Usuario{
 
     public function RegistrarCliente($Cedula, $Nombre, $Apellido, $Celular, $Email, $Clave, $Calle, $Numero, $Esquina, $Barrio ){
         $Tipo= "Cliente";
-        $sql = "INSERT INTO usuario VALUES ('$Cedula', NULL, '$Nombre', '$Apellido', '$Celular', '$Email', '$Clave', '$Calle', '$Numero', '$Esquina', '$Barrio', '$Tipo')";
+        $Estado= "Pendiente";
+        $sql = "INSERT INTO usuario VALUES ('$Cedula', NULL, '$Nombre', '$Apellido', '$Celular', '$Email', '$Clave', '$Calle', '$Numero', '$Esquina', '$Barrio', '$Tipo', '$Estado')";
         
         
         if($this->db->query($sql)){
@@ -119,6 +120,52 @@ Class Usuario{
             
         }else{
             return false;
+        }
+    }
+
+
+
+
+    public function ComprobarEstado($Mail, $Clave){
+        $sql="SELECT * FROM usuario WHERE email='$Mail' AND contraseña='$Clave'";
+        $consulta = $this->db->query($sql);
+       
+        if( $consulta ){
+
+            
+            if( mysqli_num_rows( $consulta ) > 0){
+          
+              
+              while($fila = mysqli_fetch_array( $consulta ) ){
+        
+                    if($fila['estado']=="Aceptado"){
+                        return true;
+                    }else{
+                        return false;
+                    }
+              }
+          
+            }
+          
+           
+          
+          }
+    }
+
+    public function IniciarSesion($Mail, $Clave){
+        $sql="SELECT * FROM usuario WHERE email='$Mail' AND contraseña='$Clave'"; 
+        $consulta = $this->db->query($sql);
+        
+        
+
+        if($result=$consulta){
+            $filas=mysqli_num_rows($consulta);
+        }
+
+        if($filas<1){
+            return false;
+        }else{
+            return true;
         }
     }
 

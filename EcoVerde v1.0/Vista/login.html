@@ -43,14 +43,17 @@
     
     </div>
     <img src="../images/img-login.jpg" alt="logo ecoverde" class="img-fondo">
-    <form action="" class="form-login">
+    <form action="../Controlador/controladorCliente.php" class="form-login" method="POST">
       <a href="index.html"><img src="../images/logoresponsive.png" class="logo-responsive"></a>
       <label class="email-label">Email</label>
       <input type="mail" class="caja-login " name="mail">
+
+      <div class="mensajeMail"> <span class="mensaje-error">El mail o la contraseña son incorrectos</span> </div>
+
       <label class="pass-label">Contraseña</label>
       <input type="password" name="pass" class="caja-login" >
       
-      <p class="registrarse-texto">¿No tienes una cuenta? <a href="vistaClientesAdmin.html" class="registrarse">Regístrate</a></p>
+      <p class="registrarse-texto">¿No tienes una cuenta? <a href="registrarse.html" class="registrarse">Regístrate</a></p>
       <input type="submit" value="ENTRAR" name="entrar" class="entrar-boton">
     </form>
     
